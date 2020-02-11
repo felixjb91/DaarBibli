@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.lixian.daarbibli"
+    },
+    "jhipsterVersion": "6.7.0",
+    "applicationType": "monolith",
+    "baseName": "DaarBibli",
+    "packageName": "com.lixian.daarbibli",
+    "packageFolder": "com/lixian/daarbibli",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MmZkYjgxZWI5NDIzMmYxZTJkNDFhMTc5MGNmZWExYTJjNTU2NDliOTg5ZDQ5NDE3ZGIzMDdmY2E5ZWU1MTc1NTcxY2NjMzMzMDlkOTZiOGVlMzFjZDlkZDVhZTExMDAwYjBiZWFjYjg3ZjE5MGE4NGJlMTRmMDNmYmUzYTdmZjI=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1581416823247,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

@@ -1,0 +1,11 @@
+version: '2'
+services:
+  daarbibli-postgresql:
+    image: postgres:12.1
+    # volumes:
+    #     - ~/volumes/jhipster/DaarBibli/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=DaarBibli
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
