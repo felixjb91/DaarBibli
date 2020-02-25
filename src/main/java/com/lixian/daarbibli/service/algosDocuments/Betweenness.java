@@ -221,7 +221,7 @@ public class Betweenness {
     }
 
     public void recupererDonnees() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("jaccard.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("jaccardDistances.txt"));
         ArrayList<String> recuperer = new ArrayList<String>();
         String st;
         int i = 0;

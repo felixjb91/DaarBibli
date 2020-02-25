@@ -13,7 +13,7 @@ public class Closeness {
     }
 
     public void calculer() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("jaccard.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("jaccardDistances.txt"));
         ArrayList<ArrayList<String>> jaccards = new ArrayList<ArrayList<String>>();
         String st;
         while ((st = br.readLine()) != null) {

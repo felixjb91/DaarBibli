@@ -26,7 +26,8 @@ public class IndexingService {
                     BufferedReader br = new BufferedReader(new FileReader(file));
                     String st;
                     while ((st = br.readLine()) != null) {
-                        if (st.contains(word)) {
+                        String current = st.split(" ")[0];
+                        if(current.matches(word)){
                             br.close();
                             return true;
                         }

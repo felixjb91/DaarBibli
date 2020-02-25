@@ -200,43 +200,4 @@ public class Indexing {
 	    }
 	    writer.close();
 	}
-
-	/**
-	 *
-	 * @return
-	 * @throws IOException
-	 */
-	public ArrayList<String> readIndex() throws IOException {
-		ArrayList<String> result = new ArrayList<String>();
-		BufferedReader br = new BufferedReader(new FileReader("src/main/resources/indexedFiles/indexing_"+file));
-		String st;
-		while ((st = br.readLine()) != null) {
-			//Index index = new Index();
-			String[] ligne = st.split("=");
-			//index.setMot(ligne[0].trim());
-			//String[] liste_mots = ligne[1].split("-");
-			//index.setNb_apparition(liste_mots.length);
-			result.add(ligne[0].trim());
-		}
-		return result;
-	}
-
-	public Jaccard readIndexWithOccurence() throws IOException {
-
-		ArrayList<String> mot = new ArrayList<String>();
-		ArrayList<Integer> occurence = new ArrayList<Integer>();
-
-		BufferedReader br = new BufferedReader(new FileReader("src/main/resources/indexedFiles/indexing_"+file.getName()));
-		String st;
-		while ((st = br.readLine()) != null) {
-			String[] ligne = st.split("=");
-			mot.add(ligne[0].trim());
-			String[] nb_occurence = ligne[1].trim().split("-");
-			occurence.add(nb_occurence.length);
-		}
-
-		Jaccard result = new Jaccard(mot, occurence);
-
-		return result;
-	}
 }

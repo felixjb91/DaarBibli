@@ -27,11 +27,5 @@ public class Jaccard {
         return result;
     }
 
-    public Integer total() {
-        Integer total = 0;
-        for (int i = 0; i < getOccurences().size(); i++) {
-            total += getOccurences().get(i);
-        }
-        return total;
-    }
+    public Integer nbWords() { return this.occurences.stream().reduce(0, Integer::sum); }
 }
