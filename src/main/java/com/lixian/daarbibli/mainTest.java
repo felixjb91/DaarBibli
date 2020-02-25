@@ -11,16 +11,20 @@ import java.util.*;
 public class mainTest {
     public static void main(String[] args) throws IOException {
 
-//        String booksResources = "src/main/resources/booksResources/";
-////
-//        List<File> files = Arrays.asList(Objects.requireNonNull(new File(booksResources+"indexedFiles").listFiles()));
-//
-////        files.subList(0,20).forEach(Indexing::new);
-//
-//        IndexingService is = new IndexingService();
-//        List<String> result  = is.getAllFileNameContainingTheWord("pawlicki");
-//        System.out.println(result.size());
+        String booksResources = "src/main/resources/booksResources/";
 
-        new DistanceJaccard();
+        // Décommenter quand on voudra charger tous les livres
+        /*
+        List<File> files = Arrays.asList(Objects.requireNonNull(new File(booksResources+"gutenbergBooks").listFiles()));
+        files.subList(0,20).forEach(Indexing::new);
+
+        IndexingService is = new IndexingService();
+        System.out.println(is.getAllFileNameContainingTheWord("Sargon"));
+
+        DistanceJaccard dj = new DistanceJaccard();
+        dj.calculer();
+        */
+
+
     }
 }

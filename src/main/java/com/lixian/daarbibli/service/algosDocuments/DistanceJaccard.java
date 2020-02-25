@@ -14,7 +14,6 @@ public class DistanceJaccard {
     public DistanceJaccard() throws IOException {
         this.fichiers =  Arrays.asList(Objects.requireNonNull(new File(booksResources+"indexedFiles").listFiles()));;
         this.result = new ArrayList<String>();
-        calculer();
     }
 
     public void calculer() throws IOException {
