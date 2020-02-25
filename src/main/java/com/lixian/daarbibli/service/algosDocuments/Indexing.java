@@ -52,6 +52,7 @@ public class Indexing {
                 result.add(new Ligne(i, st));
             }
         }
+        br.close();
         return result;
 	}
 
