@@ -1,6 +1,7 @@
 package com.lixian.daarbibli;
 
 import com.lixian.daarbibli.service.IndexingService;
+import com.lixian.daarbibli.service.algosDocuments.Closeness;
 import com.lixian.daarbibli.service.algosDocuments.DistanceJaccard;
 import com.lixian.daarbibli.service.algosDocuments.Indexing;
 
@@ -25,6 +26,8 @@ public class mainTest {
         dj.calculer();
         */
 
+        Closeness cl = new Closeness();
+        cl.calculer();
 
     }
 }

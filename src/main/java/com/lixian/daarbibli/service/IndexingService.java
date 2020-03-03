@@ -1,12 +1,12 @@
 package com.lixian.daarbibli.service;
 
-import com.lixian.daarbibli.domain.algoEntities.Ligne;
-import com.lixian.daarbibli.service.algosDocuments.Indexing;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Service
 public class IndexingService {
 
-    String pathIndex = "src/main/resources/indexedFiles";
+    String pathIndex = "src/main/resources/booksResources/indexedFiles";
 
     public IndexingService() {}
 

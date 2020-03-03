@@ -12,7 +12,7 @@ public class DistanceJaccard {
     private List<String> result;
 
     public DistanceJaccard() throws IOException {
-        this.fichiers =  Arrays.asList(Objects.requireNonNull(new File(booksResources+"indexedFiles").listFiles()));;
+        this.fichiers =  Arrays.asList(Objects.requireNonNull(new File(booksResources+"indexedFiles").listFiles()));
         this.result = new ArrayList<String>();
     }
 
