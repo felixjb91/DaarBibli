@@ -1,27 +1,22 @@
 <div>
-    <h1 class="display-4 text-center">Bibliothèque de Gutenberg!</h1>
+    <h1    class="display-4 text-center mb-lg-5">Bibliothèque de Gutenberg!</h1>
 
-
-    <div class="input-group input-group-lg mb-5">
-        <div class="input-group-prepend dropdown">
-            <button class="btn btn-secondary dropdown-toggle input-group-text"
-                    type="button"
-                    data-toggle="dropdown">Trier</button>
-
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-        </div>
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+    <div class="text-center">
+         <form #searchBooks="ngForm" (ngSubmit)="onSubmit(searchBooks)">
+            <mat-form-field appearance="fill">
+                <mat-label>Filtrer</mat-label>
+                <mat-select ngModel name="filtre">
+                    <mat-option value="default">default</mat-option>
+                    <mat-option value="closness">closness</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Word to search</mat-label>
+                <input ngModel name="word" required matInput placeholder="Ex. Pizza">
+            </mat-form-field>
+            <button type="submit" class="btn btn-outline-secondary btn-lg mb-3">Search!</button>
+         </form>
     </div>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Select</mat-label>
-        <mat-select>
-            <mat-option value="option">Option</mat-option>
-        </mat-select>
-    </mat-form-field>
+    {{ filesName | json }}
 </div>

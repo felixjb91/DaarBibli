@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Renderer, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -30,13 +30,13 @@ export class RegisterComponent implements AfterViewInit {
   constructor(
     private loginModalService: LoginModalService,
     private registerService: RegisterService,
-    private renderer: Renderer,
+    private renderer: Renderer2,
     private fb: FormBuilder
   ) {}
 
   ngAfterViewInit(): void {
     if (this.login) {
-      this.renderer.invokeElementMethod(this.login.nativeElement, 'focus', []);
+      // this.renderer.invokeElementMethod(this.login.nativeElement, 'focus', []);
     }
   }
 

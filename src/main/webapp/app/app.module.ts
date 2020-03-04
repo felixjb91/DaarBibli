@@ -14,7 +14,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ErrorComponent } from './layouts/error/error.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   imports: [
     BrowserModule,
@@ -24,8 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     // jhipster-needle-angular-add-module JHipster will add new module here
     DaarBibliEntityModule,
     DaarBibliAppRoutingModule,
-    BrowserAnimationsModule
-    // ------Angular Material--------
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   bootstrap: [MainComponent]
