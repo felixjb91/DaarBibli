@@ -1,19 +1,19 @@
 package com.lixian.daarbibli.service.algosDocuments;
 
+import com.lixian.daarbibli.service.Utile;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Closeness {
 
     private String booksResources = "src/main/resources/booksResources/";
     private List<File> fichiers;
-    private List<String> result;
+    private Map<String,Double> result;
 
     public Closeness() throws IOException {
-        this.result = new ArrayList<String>();
+        this.result = new HashMap<>();
         this.fichiers =  Arrays.asList(Objects.requireNonNull(new File(this.booksResources+"indexedFiles").listFiles()));
     }
 
@@ -42,20 +42,22 @@ public class Closeness {
                 }
             }
             if (result != 0.0) {
-                result = 1 / result;
+                result = (fichiers.size()- 1) / result;
             }
-            this.result.add(f.getName()+"="+result);
+            this.result.put(f.getName().split("_")[1], result);
         }
+        result = Utile.sortResultByValue(result);
         publierValeur();
     }
 
     public void publierValeur() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(booksResources+"closeness.txt"));
-        for (String f : result) {
-            writer.write(f);
+        for (Map.Entry<String,Double> entry: result.entrySet()) {
+            writer.write(entry.getKey()+"="+ entry.getValue());
             writer.write('\n');
         }
 
         writer.close();
     }
+
 }

@@ -1,8 +1,7 @@
 package com.lixian.daarbibli.web.rest;
 
-import com.lixian.daarbibli.service.IndexingService;
+import com.lixian.daarbibli.service.BooksService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,14 +13,23 @@ import java.util.List;
 @RequestMapping("/api/books")
 public class BooksResource {
 
-    IndexingService indexingService;
+    BooksService booksService;
 
-    public BooksResource(IndexingService indexingService) {
-        this.indexingService = indexingService;
+    public BooksResource(BooksService booksService) {
+        this.booksService = booksService;
     }
 
-    @GetMapping("/fileName")
-    public ResponseEntity<List<String>> getFileNameFromIndex(@RequestParam("word") String word){
-        return ResponseEntity.ok(indexingService.getAllFileNameContainingTheWord(word));
+    @GetMapping("/default")
+    public ResponseEntity<List<String>> getFilesName(@RequestParam("word") String word) {
+        return ResponseEntity.ok(booksService.getAllFileNameContainingTheWord(word));
     }
+    @GetMapping("/closeness")
+    public ResponseEntity<List<String>> getFilesNameCloseness(@RequestParam("word") String word) {
+        return ResponseEntity.ok(booksService.sortBookByClosness(booksService.getAllFileNameContainingTheWord(word)));
+    }
+    @GetMapping("/suggestion")
+    public ResponseEntity<List<String>> getFilesNameSuggestion(@RequestParam("filename") String filename) {
+        return ResponseEntity.ok(booksService.getFilesSuggestion(filename));
+    }
+
 }

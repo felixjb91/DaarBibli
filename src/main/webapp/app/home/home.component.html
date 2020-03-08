@@ -12,11 +12,17 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Word to search</mat-label>
-                <input ngModel name="word" required matInput placeholder="Ex. Pizza">
+                <input ngModel name="word" matInput placeholder="Ex. Pizza">
             </mat-form-field>
             <button type="submit" class="btn btn-outline-secondary btn-lg mb-3">Search!</button>
          </form>
     </div>
 
-    {{ filesName | json }}
+    <ul>
+        <li *ngFor="let file of filesName">
+            <a href="{{ generateURL(file) }}" target="_blank">{{ file }}</a>
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="getSuggestion(file)">Suggestion</button>
+            <p *ngIf="file === fileNameSuggestion">{{ suggestions | json }}</p>
+        </li>
+    </ul>
 </div>

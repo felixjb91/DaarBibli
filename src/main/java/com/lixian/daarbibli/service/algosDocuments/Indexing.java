@@ -26,9 +26,7 @@ public class Indexing {
 	public void construireIndex() {
 		try {
 			lignes.addAll(fileToList());
-			for (Ligne l : lignes) {
-				mots.addAll(getMots(l));
-			}
+			for (Ligne l : lignes) mots.addAll(getMots(l));
 			buildIndexFile();
 		} catch (IOException e) {
 			e.printStackTrace();

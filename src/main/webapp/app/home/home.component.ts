@@ -6,6 +6,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 import { NgForm } from '@angular/forms';
 
+import { BASE_URL_BOOKS } from 'app/app.constants';
 import { BooksService } from '../services/books.service';
 
 @Component({
@@ -17,6 +18,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
   filesName: string[] = [];
+  suggestions: string[] = [];
+  fileNameSuggestion = '';
+  BASE_URL_BOOKS: string = BASE_URL_BOOKS;
 
   constructor(private accountService: AccountService, private loginModalService: LoginModalService, private booksService: BooksService) {}
 
@@ -33,15 +37,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
+    if (this.authSubscription) this.authSubscription.unsubscribe();
   }
 
   onSubmit(searchBooks: NgForm): void {
     this.booksService
-      .searchBooksName(searchBooks.value)
+      .searchBooks(searchBooks.value)
       .pipe()
       .subscribe(name => (this.filesName = name));
+  }
+
+  getSuggestion(filename: string): void {
+    this.suggestions = [];
+    this.fileNameSuggestion = filename;
+    this.booksService
+      .searchSuggestion(filename)
+      .pipe()
+      .subscribe(name => (this.suggestions = name));
+  }
+
+  generateURL(filename: string): string {
+    return BASE_URL_BOOKS + filename.split('.')[0];
   }
 }
