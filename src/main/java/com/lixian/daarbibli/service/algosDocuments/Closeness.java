@@ -4,7 +4,6 @@ import com.lixian.daarbibli.service.Utile;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Closeness {
 
@@ -46,7 +45,7 @@ public class Closeness {
             }
             this.result.put(f.getName().split("_")[1], result);
         }
-        result = Utile.sortResultByValue(result);
+        result = Utile.sortResultByValueDouble(result);
         publierValeur();
     }
 
@@ -56,7 +55,6 @@ public class Closeness {
             writer.write(entry.getKey()+"="+ entry.getValue());
             writer.write('\n');
         }
-
         writer.close();
     }
 

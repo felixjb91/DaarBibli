@@ -21,7 +21,7 @@ public class BooksResource {
 
     @GetMapping("/default")
     public ResponseEntity<List<String>> getFilesName(@RequestParam("word") String word) {
-        return ResponseEntity.ok(booksService.getAllFileNameContainingTheWord(word));
+        return ResponseEntity.ok(booksService.getAllFileNameContainingTheWord(word).subList(0,20));
     }
     @GetMapping("/closeness")
     public ResponseEntity<List<String>> getFilesNameCloseness(@RequestParam("word") String word) {
@@ -29,7 +29,7 @@ public class BooksResource {
     }
     @GetMapping("/suggestion")
     public ResponseEntity<List<String>> getFilesNameSuggestion(@RequestParam("filename") String filename) {
-        return ResponseEntity.ok(booksService.getFilesSuggestion(filename));
+        return ResponseEntity.ok(booksService.getFilesSuggestion(filename,10));
     }
 
 }

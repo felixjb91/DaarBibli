@@ -1,5 +1,5 @@
 <div>
-    <h1    class="display-4 text-center mb-lg-5">Bibliothèque de Gutenberg!</h1>
+    <h1 class="display-4 text-center mb-lg-5">Bibliothèque de Gutenberg!</h1>
 
     <div class="text-center">
          <form #searchBooks="ngForm" (ngSubmit)="onSubmit(searchBooks)">
@@ -18,11 +18,17 @@
          </form>
     </div>
 
-    <ul>
-        <li *ngFor="let file of filesName">
-            <a href="{{ generateURL(file) }}" target="_blank">{{ file }}</a>
-            <button type="button" class="btn btn-outline-danger btn-sm" (click)="getSuggestion(file)">Suggestion</button>
-            <p *ngIf="file === fileNameSuggestion">{{ suggestions | json }}</p>
-        </li>
-    </ul>
+
+    <div class="container-fluid">
+        <div class="row justify-content-around">
+            <div *ngFor="let file of filesName">
+                <div class="col">
+                    <jhi-book [filename]="file"></jhi-book>
+<!--                    <a href="{{ generateURL(file) }}" target="_blank">{{ file }}</a>-->
+<!--                    <button type="button" class="btn btn-outline-danger btn-sm" (click)="getSuggestion(file)">Suggestion</button>-->
+<!--                    <p *ngIf="file === fileNameSuggestion">{{ suggestions | json }}</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

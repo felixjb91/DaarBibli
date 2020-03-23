@@ -35,6 +35,8 @@
     "dtoSuffix": "DTO",
     "otherModules": [],
     "enableTranslation": false,
-    "blueprints": []
+    "blueprints": [],
+    "herokuAppName": "serene-ravine-04185",
+    "herokuDeployType": "git"
   }
 }

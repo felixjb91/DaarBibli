@@ -2,16 +2,14 @@ package com.lixian.daarbibli.service;
 
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class BooksService {
 
+    String pathBooks = "src/main/resources/booksResources/gutenbergBooks";
     String pathIndex = "src/main/resources/booksResources/indexedFiles";
     String pathCloseness = "src/main/resources/booksResources/closeness.txt";
     String pathJaccard = "src/main/resources/booksResources/jaccardDistances.txt";
@@ -20,7 +18,7 @@ public class BooksService {
     public BooksService() {}
 
     public List<String> getAllFileNameContainingTheWord(String word) {
-        return files.stream()
+        return files.parallelStream()
             .filter(file -> {
                 try {
                     BufferedReader br = new BufferedReader(new FileReader(file));
@@ -42,7 +40,7 @@ public class BooksService {
             .collect(Collectors.toList());
     }
 
-    public List<String> getFilesSuggestion(String fileName) {
+    public List<String> getFilesSuggestion(String fileName, int nbSuggestion) {
         Map<String,Double> result = new HashMap<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(new File(pathJaccard)));
@@ -58,11 +56,13 @@ public class BooksService {
                 result.put(second,Double.parseDouble(dist));
             }
             br.close();
-            result = Utile.sortResultByValueReversed(result);
+            result = Utile.sortResultByValueDoubleReversed(result);
+//            result = Utile.getTopResultSorted(result, nbSuggestion);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new ArrayList<>(result.keySet());
+        return new ArrayList<>(result.keySet()).subList(0,nbSuggestion);
+//        return new ArrayList<>(result.keySet());
     }
 
     public List<String> sortBookByClosness(List<String> filesName) {

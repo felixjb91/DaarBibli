@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
+import { BookComponent } from './book/book.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   imports: [
@@ -22,8 +24,9 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     TextFieldModule,
     MatSlideToggleModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ],
-  declarations: [HomeComponent]
+  declarations: [HomeComponent, BookComponent]
 })
 export class DaarBibliHomeModule {}

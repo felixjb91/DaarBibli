@@ -13,10 +13,10 @@ import java.util.Scanner;
 
 public class Indexing {
 	private File file;
-	private ArrayList<Ligne> lignes = new ArrayList<Ligne>();
-	private ArrayList<Mot> mots = new ArrayList<Mot>();
-	private ArrayList<ListeMots> listeMots = new ArrayList<ListeMots>();
-	private Map<String, Integer> indexes = new HashMap<String, Integer>();
+	private ArrayList<Ligne> lignes = new ArrayList<>();
+	private ArrayList<Mot> mots = new ArrayList<>();
+	private ArrayList<ListeMots> listeMots = new ArrayList<>();
+	private Map<String, Integer> indexes = new HashMap<>();
 
 	public Indexing(File file) {
 		this.file = file;
@@ -28,6 +28,7 @@ public class Indexing {
 			lignes.addAll(fileToList());
 			for (Ligne l : lignes) mots.addAll(getMots(l));
 			buildIndexFile();
+            System.out.println(file.getName() + " : done");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -60,7 +61,7 @@ public class Indexing {
 	 * @return Une liste de mot avec leur indice de ligne et de mot
 	 */
 	public ArrayList<Mot> getMots(Ligne ligne) {
-		ArrayList<Mot> result = new ArrayList<Mot>();
+		ArrayList<Mot> result = new ArrayList<>();
 
 		String mot = "";
 		int indice = 0;
@@ -179,7 +180,7 @@ public class Indexing {
 	 * @throws IOException
 	 */
 	public void WriteInFile() throws IOException {
-	    BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/indexedFiles/indexing_"+file.getName()));
+	    BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/booksResources/indexedFiles/indexing_"+file.getName()));
 	    for (int i = 0; i < listeMots.size(); i++) {
 
 	    	for (int j = 0; j < listeMots.get(i).size(); j++) {
