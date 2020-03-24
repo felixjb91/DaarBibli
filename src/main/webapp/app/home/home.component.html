@@ -19,15 +19,25 @@
     </div>
 
 
-    <div class="container-fluid">
+    <div *ngIf="loading">
+<!--        <h1 class="text-center">LOADING</h1>-->
+        <div class="loader pb-5">
+            <div class="duo duo1">
+                <div class="dot dot-a"></div>
+                <div class="dot dot-b"></div>
+            </div>
+            <div class="duo duo2">
+                <div class="dot dot-a"></div>
+                <div class="dot dot-b"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" *ngIf="!loading">
         <div class="row justify-content-around">
             <div *ngFor="let file of filesName">
-                <div class="col">
+                <div class="col mb-3">
                     <jhi-book [filename]="file"></jhi-book>
-<!--                    <a href="{{ generateURL(file) }}" target="_blank">{{ file }}</a>-->
-<!--                    <button type="button" class="btn btn-outline-danger btn-sm" (click)="getSuggestion(file)">Suggestion</button>-->
-<!--                    <p *ngIf="file === fileNameSuggestion">{{ suggestions | json }}</p>-->
-                </div>
             </div>
         </div>
     </div>

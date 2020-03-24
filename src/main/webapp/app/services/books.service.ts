@@ -19,4 +19,9 @@ export class BooksService {
     const params: HttpParams = new HttpParams().set('filename', filename);
     return this.http.get<string[]>(SERVER_API_URL + '/api/books/suggestion', { params });
   }
+
+  getDataOnBook(fileNum: string): Observable<any> {
+    console.log('http://gutendex.com/books/' + fileNum);
+    return this.http.get('http://gutendex.com/books/' + fileNum, {});
+  }
 }

@@ -12,13 +12,15 @@ export class BookComponent implements OnInit {
   subFilename = '';
   imageSrc = '';
   suggestions: string[] = [];
-  private displaySuggestion = false;
+  displaySuggestion = false;
+  data: any;
 
   constructor(private booksService: BooksService) {}
 
   ngOnInit(): void {
     this.subFilename = this.filename.substring(0, this.filename.length - 4);
     this.imageSrc = 'https://www.gutenberg.org/cache/epub/' + this.subFilename + '/pg' + this.subFilename + '.cover.medium.jpg';
+    this.getData();
   }
 
   updateUrl(): void {
@@ -26,6 +28,7 @@ export class BookComponent implements OnInit {
   }
 
   private getSuggestion(): void {
+    console.log(this.data);
     this.displaySuggestion = !this.displaySuggestion;
     if (this.suggestions.length === 0)
       this.booksService
@@ -36,5 +39,9 @@ export class BookComponent implements OnInit {
 
   generateURL(): string {
     return BASE_URL_BOOKS + this.filename.split('.')[0];
+  }
+
+  getData(): void {
+    this.booksService.getDataOnBook(this.subFilename).subscribe(value => (this.data = value));
   }
 }

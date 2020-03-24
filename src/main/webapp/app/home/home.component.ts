@@ -18,15 +18,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   authSubscription?: Subscription;
   filesName: string[] = [];
   suggestions: string[] = [];
+  loading = false;
 
   constructor(private accountService: AccountService, private loginModalService: LoginModalService, private booksService: BooksService) {}
 
   ngOnInit(): void {
     this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
-  }
-
-  isAuthenticated(): boolean {
-    return this.accountService.isAuthenticated();
   }
 
   login(): void {
@@ -38,22 +35,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(searchBooks: NgForm): void {
+    this.loading = true;
     this.booksService
       .searchBooks(searchBooks.value)
       .pipe()
-      .subscribe(name => (this.filesName = name));
+      .subscribe(name => {
+        this.filesName = name;
+        this.loading = false;
+      });
   }
-
-  // getSuggestion(filename: string): void {
-  //   this.suggestions = [];
-  //   this.fileNameSuggestion = filename;
-  //   this.booksService
-  //     .searchSuggestion(filename)
-  //     .pipe()
-  //     .subscribe(name => (this.suggestions = name));
-  // }
-  //
-  // generateURL(filename: string): string {
-  //   return BASE_URL_BOOKS + filename.split('.')[0];
-  // }
 }
