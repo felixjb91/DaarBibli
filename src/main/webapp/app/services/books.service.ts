@@ -9,9 +9,12 @@ import { Observable } from 'rxjs';
 export class BooksService {
   constructor(private http: HttpClient) {}
 
-  searchBooks(searchBooks: any): Observable<string[]> {
+  searchBooks(searchBooks: any, numPage: number, pageSize: number): Observable<any> {
     const apiName = searchBooks.filtre === 'default' ? 'default' : 'closeness';
-    const params: HttpParams = new HttpParams().set('word', searchBooks.word);
+    const params: HttpParams = new HttpParams()
+      .set('word', searchBooks.word)
+      .set('page', String(numPage))
+      .set('pageSize', String(pageSize));
     return this.http.get<string[]>(SERVER_API_URL + '/api/books/' + apiName, { params });
   }
 
@@ -21,7 +24,6 @@ export class BooksService {
   }
 
   getDataOnBook(fileNum: string): Observable<any> {
-    console.log('http://gutendex.com/books/' + fileNum);
     return this.http.get('http://gutendex.com/books/' + fileNum, {});
   }
 }

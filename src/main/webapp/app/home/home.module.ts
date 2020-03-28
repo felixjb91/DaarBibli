@@ -13,6 +13,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { BookComponent } from './book/book.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -25,8 +27,11 @@ import { MatCardModule } from '@angular/material/card';
     TextFieldModule,
     MatSlideToggleModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatListModule,
+    MatPaginatorModule
   ],
+  exports: [BookComponent],
   declarations: [HomeComponent, BookComponent]
 })
 export class DaarBibliHomeModule {}

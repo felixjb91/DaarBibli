@@ -34,10 +34,17 @@
     </div>
 
     <div class="container-fluid" *ngIf="!loading">
+        <mat-paginator [length]="pageLength"
+                       [pageSize]="pageSize"
+                       [pageSizeOptions]="[5, 10, 25, 100]"
+                       (page)="handlePage($event)">
+
+        </mat-paginator>
         <div class="row justify-content-around">
             <div *ngFor="let file of filesName">
                 <div class="col mb-3">
                     <jhi-book [filename]="file"></jhi-book>
+                </div>
             </div>
         </div>
     </div>

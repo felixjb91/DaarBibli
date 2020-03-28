@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
 
 import './vendor';
 import { DaarBibliSharedModule } from 'app/shared/shared.module';
@@ -15,6 +16,9 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ErrorComponent } from './layouts/error/error.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { SuggestionComponent } from 'app/home/suggestion/suggestion.component';
+import { getSuggestion } from 'codelyzer/util/getSuggestion';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,9 +29,13 @@ import { HttpClientModule } from '@angular/common/http';
     DaarBibliEntityModule,
     DaarBibliAppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatIconModule
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent, SuggestionComponent],
+  entryComponents: [SuggestionComponent],
+  providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   bootstrap: [MainComponent]
 })
 export class DaarBibliAppModule {}
