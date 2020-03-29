@@ -18,9 +18,7 @@
          </form>
     </div>
 
-
     <div *ngIf="loading">
-<!--        <h1 class="text-center">LOADING</h1>-->
         <div class="loader pb-5">
             <div class="duo duo1">
                 <div class="dot dot-a"></div>
@@ -33,13 +31,22 @@
         </div>
     </div>
 
-    <div class="container-fluid" *ngIf="!loading">
-        <mat-paginator [length]="pageLength"
-                       [pageSize]="pageSize"
-                       [pageSizeOptions]="[5, 10, 25, 100]"
-                       (page)="handlePage($event)">
+    <div class="container-fluid m-3" *ngIf="!loading && filesName.length > 0">
+        <div class="row justify-content-center">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <mat-paginator [length]="pageLength"
+                               [pageSize]="pageSize"
+                               [pageSizeOptions]="pageOptions"
+                               [pageIndex]="pageIndex"
+                               [showFirstLastButtons]="true"
+                               (page)="handlePage($event)">
 
-        </mat-paginator>
+                </mat-paginator>
+                <div *ngFor="let p of pagesTab">
+                    <button [id]="p" type="button" [ngClass]="{'btn-secondary':pageIndex === p, 'btn-outline-secondary':pageIndex != p}" class="btn " (click)="changePage(p)">{{p+1}}</button>
+                </div>
+            </div>
+        </div>
         <div class="row justify-content-around">
             <div *ngFor="let file of filesName">
                 <div class="col mb-3">

@@ -4,11 +4,6 @@ import { BooksService } from 'app/services/books.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SuggestionComponent } from 'app/home/suggestion/suggestion.component';
 
-export interface DataSuggestion {
-  title: string;
-  suggestions: string[];
-}
-
 @Component({
   selector: 'jhi-book',
   templateUrl: './book.component.html',

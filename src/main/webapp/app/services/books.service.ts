@@ -10,12 +10,13 @@ export class BooksService {
   constructor(private http: HttpClient) {}
 
   searchBooks(searchBooks: any, numPage: number, pageSize: number): Observable<any> {
-    const apiName = searchBooks.filtre === 'default' ? 'default' : 'closeness';
+    const filter = searchBooks.filtre === 'default' || searchBooks.filtre.length === 0 ? 'default' : 'closeness';
     const params: HttpParams = new HttpParams()
+      .set('filter', filter)
       .set('word', searchBooks.word)
       .set('page', String(numPage))
       .set('pageSize', String(pageSize));
-    return this.http.get<string[]>(SERVER_API_URL + '/api/books/' + apiName, { params });
+    return this.http.get(SERVER_API_URL + '/api/books/search', { params });
   }
 
   searchSuggestion(filename: string): Observable<string[]> {

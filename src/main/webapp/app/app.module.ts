@@ -17,7 +17,6 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SuggestionComponent } from 'app/home/suggestion/suggestion.component';
-import { getSuggestion } from 'codelyzer/util/getSuggestion';
 import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   imports: [

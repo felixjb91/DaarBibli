@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/books")
@@ -18,48 +19,45 @@ public class BooksResource {
 
     BooksService booksService;
 
+    Map<String, List<String>> memoire = new HashMap<>();
+
     public BooksResource(BooksService booksService) {
         this.booksService = booksService;
     }
 
-    @GetMapping("/default")
-    public ResponseEntity getFilesName(@RequestParam("word") String word, @RequestParam("page") int numPage) {
-        List<String> list = booksService.getAllFileNameContainingTheWord(word);
+    @GetMapping("/search")
+    public ResponseEntity<Object> getFilesName(@RequestParam("filter") String filter, @RequestParam("word") String word, @RequestParam("page") int pageIndex, @RequestParam("pageSize") int pageSize) {
+        List<String> list;
+        if (memoire.containsKey(word)) list = memoire.get(word);
+        else {
+            list = booksService.getAllFileNameContainingTheWord(word);
+            memoire.put(word,list);
+        }
 
-        PagedListHolder page = new PagedListHolder(list);
-        page.setPageSize(20);
-        page.setPage(numPage);
+        if (filter.equals("closeness")) list = booksService.sortBookByClosness(list);
 
-        page.getPageCount();
-        page.getPageList();
+        PagedListHolder<String> page = getPage(list, pageIndex, pageSize);
 
-        return ResponseEntity.ok(page.getPageList());
+        Map<String,Object> map = new HashMap<>();
+        map.put("page",page.getPageList());
+        map.put("pageLength",list.size());
+        map.put("nbPages",page.getPageCount());
+        map.put("pageIndex",pageIndex);
+
+        System.out.println("list size : " + list.size() + " , nombre de page : " + page.getPageCount() + " , pageSize : " + pageSize);
+
+        return ResponseEntity.ok(map);
     }
 
-//    @GetMapping("/default")
-//    public ResponseEntity getFilesName(@RequestParam("word") String word, @RequestParam("page") int numPage, @RequestParam("pageSize") int pageSize) {
-//        List<String> list = booksService.getAllFileNameContainingTheWord(word);
-//
-//        PagedListHolder page = new PagedListHolder(list);
-//        page.setPageSize(pageSize);
-//        page.setPage(numPage);
-//        page.getPageCount();
-//        page.getPageList();
-//
-//        Map<String,Object> result = new HashMap<>();
-//        Map<String,Object> map = new HashMap<>();
-//        map.put("page",page.getPageList());
-//        map.put("pageLength",page.getPageCount());
-//        result.put("result",result);
-//        return ResponseEntity.ok(result);
-//    }
-//
-    @GetMapping("/closeness")
-    public ResponseEntity<List<String>> getFilesNameCloseness(@RequestParam("word") String word) {
-        return ResponseEntity.ok(booksService.sortBookByClosness(booksService.getAllFileNameContainingTheWord(word)));
-    }
     @GetMapping("/suggestion")
     public ResponseEntity<List<String>> getFilesNameSuggestion(@RequestParam("filename") String filename) {
         return ResponseEntity.ok(booksService.getFilesSuggestion(filename,10));
+    }
+
+    private PagedListHolder<String> getPage(List<String> list, int numPage, int pageSize) {
+        PagedListHolder<String> page = new PagedListHolder<>(list);
+        page.setPageSize(pageSize);
+        page.setPage(numPage);
+        return page;
     }
 }

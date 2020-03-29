@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BookComponent, DataSuggestion } from 'app/home/book/book.component';
+import { BookComponent } from 'app/home/book/book.component';
+import { DataSuggestion } from 'app/home/intefaces/DataSuggestion';
 
 @Component({
   selector: 'jhi-suggestion',
