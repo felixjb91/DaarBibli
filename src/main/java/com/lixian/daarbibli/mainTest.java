@@ -4,7 +4,6 @@ import com.lixian.daarbibli.service.BooksService;
 import com.lixian.daarbibli.service.algosDocuments.Closeness;
 import com.lixian.daarbibli.service.algosDocuments.DistanceJaccard;
 import com.lixian.daarbibli.service.algosDocuments.Indexing;
-import com.lixian.daarbibli.service.algosDocuments.Indexing2;
 
 import java.io.File;
 import java.io.IOException;
