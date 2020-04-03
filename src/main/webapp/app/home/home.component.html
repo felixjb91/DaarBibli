@@ -18,15 +18,39 @@
          </form>
     </div>
 
+    <div *ngIf="loading">
+        <div class="loader pb-5">
+            <div class="duo duo1">
+                <div class="dot dot-a"></div>
+                <div class="dot dot-b"></div>
+            </div>
+            <div class="duo duo2">
+                <div class="dot dot-a"></div>
+                <div class="dot dot-b"></div>
+            </div>
+        </div>
+    </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid m-3" *ngIf="!loading && filesName.length > 0">
+        <div class="row justify-content-center">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <mat-paginator [length]="pageLength"
+                               [pageSize]="pageSize"
+                               [pageSizeOptions]="pageOptions"
+                               [pageIndex]="pageIndex"
+                               [showFirstLastButtons]="true"
+                               (page)="handlePage($event)">
+
+                </mat-paginator>
+                <div *ngFor="let p of pagesTab">
+                    <button [id]="p" type="button" [ngClass]="{'btn-secondary':pageIndex === p, 'btn-outline-secondary':pageIndex != p}" class="btn " (click)="changePage(p)">{{p+1}}</button>
+                </div>
+            </div>
+        </div>
         <div class="row justify-content-around">
             <div *ngFor="let file of filesName">
-                <div class="col">
+                <div class="col mb-3">
                     <jhi-book [filename]="file"></jhi-book>
-<!--                    <a href="{{ generateURL(file) }}" target="_blank">{{ file }}</a>-->
-<!--                    <button type="button" class="btn btn-outline-danger btn-sm" (click)="getSuggestion(file)">Suggestion</button>-->
-<!--                    <p *ngIf="file === fileNameSuggestion">{{ suggestions | json }}</p>-->
                 </div>
             </div>
         </div>
