@@ -15,17 +15,22 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class mainTest {
-    public static void main(String[] args) throws IOException {
-
-        String booksResources = "src/main/resources/booksResources/";
 
 
-        List<File> files = Arrays.asList(Objects.requireNonNull(new File(booksResources+"gutenbergBooks").listFiles()));
-        List<String> filesName = files.subList(0,100).stream().map(File::getName).collect(Collectors.toList());
-        List<Map<String,String>> resultTxt = Utile.getTitleAndAuthorFromTxt(filesName);
-        List<Map<String,String>> resultWeb = Utile.getTitleAndAuthorFromTxt(filesName);
 
-        System.out.println(resultTxt.get(0).keySet().size()+resultWeb.get(0).keySet().size());
+//    public static void main(String[] args) throws IOException {
+
+
+
+//        String booksResources = "src/main/resources/booksResources/";
+//
+//
+//        List<File> files = Arrays.asList(Objects.requireNonNull(new File(booksResources+"gutenbergBooks").listFiles()));
+//        List<String> filesName = files.subList(0,100).stream().map(File::getName).collect(Collectors.toList());
+//        List<Map<String,String>> resultTxt = Utile.getTitleAndAuthorFromTxt(filesName);
+//        List<Map<String,String>> resultWeb = Utile.getTitleAndAuthorFromTxt(filesName);
+//
+//        System.out.println(resultTxt.get(0).keySet().size()+resultWeb.get(0).keySet().size());
 
 //        List<String> filesname = files.stream().map(File::getName).collect(Collectors.toList());
 //        System.out.println(Utile.getTitleAndAuthorFromWeb(filesname.subList(0,5)));
@@ -39,5 +44,5 @@ public class mainTest {
 //
 //        Closeness cl = new Closeness();
 //        cl.calculer();
-    }
+//    }
 }

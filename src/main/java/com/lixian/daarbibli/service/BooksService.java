@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 @Service
 public class BooksService {
 
+
     String pathBooks = "src/main/resources/booksResources/gutenbergBooks";
     String pathIndex = "src/main/resources/booksResources/indexedFiles";
     String pathCloseness = "src/main/resources/booksResources/closeness.txt";

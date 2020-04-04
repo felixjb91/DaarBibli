@@ -36,7 +36,7 @@
     "otherModules": [],
     "enableTranslation": false,
     "blueprints": [],
-    "herokuAppName": "serene-ravine-04185",
+    "herokuAppName": "daar-bibli",
     "herokuDeployType": "git"
   }
 }

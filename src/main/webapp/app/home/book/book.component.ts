@@ -27,7 +27,7 @@ export class BookComponent implements OnInit {
     this.getData();
   }
 
-  private getSuggestion(): void {
+  getSuggestion(): void {
     this.displaySuggestion = !this.displaySuggestion;
     if (this.suggestions.length === 0)
       this.booksService
