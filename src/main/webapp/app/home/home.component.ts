@@ -85,10 +85,10 @@ export class HomeComponent implements OnInit {
     this.pagesTab = [];
     let begin: number;
     let end: number;
-    if (this.pageIndex < this.nbPageToDisplay / 2) {
+    if (this.pageIndex < this.nbPageToDisplay) {
       begin = 0;
       end = this.nbPageToDisplay;
-    } else if (this.pageIndex > this.nbPages - 1 - this.nbPageToDisplay) {
+    } else if (this.pageIndex > this.nbPages - this.nbPageToDisplay) {
       begin = this.nbPages - this.nbPageToDisplay;
       end = this.nbPages;
     } else {

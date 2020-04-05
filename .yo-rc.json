@@ -37,6 +37,6 @@
     "enableTranslation": false,
     "blueprints": [],
     "herokuAppName": "daar-bibli",
-    "herokuDeployType": "git"
+    "herokuDeployType": "jar"
   }
 }
